@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>খাদ্যবান্ধব কর্মসূচি</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="csrf-token" content="+# dullaup.github.io">
+    <!-- Bootstrap CSS-->
+    <link href="+# dullaup.github.io" rel="stylesheet" type="text/css">
+    <!-- Font Awesome CSS-->
+    <link href="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/font-awesome.min.css" rel="stylesheet">
+
+
+    <link href="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/jquery.datetimepicker.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/theme.min.css">  
+
+
+
+
+<script id="+# dullaup.github.io">
+console.log('** dataslayer: injecting Launch monitors **');
+window._satellite = window._satellite || {};
+window._satellite._monitors = window._satellite._monitors || [];
+window._satellite._monitors.push({
+  ruleTriggered: function(e) {
+    window.parent.postMessage(
+      {
+        type: 'dataslayer_launchruletriggered',
+        url: window == window.parent ? window.location.href : 'iframe',
+        data: JSON.parse(JSON.stringify(e.rule)),
+      },
+      '*'
+    );
+  },
+  ruleCompleted: function(e) {
+    // console.log('** dataslayer: Launch rule completed **', e.rule);
+    var rule = JSON.parse(JSON.stringify(e.rule));
+    var sendRule = function() {
+        if (window.dataslayer) {
+            window.parent.postMessage(
+                {
+                    type: 'dataslayer_launchrulecompleted',
+                    url: window == window.parent ? window.location.href : 'iframe',
+                    data: rule,
+                },
+                '*'
+            );       
+            // console.log('** dataslayer: posted rule '+rule+'**'); 
+        } else {
+            if (document.readyState === 'complete') {
+                // console.log('** dataslayer: giving up on launch **');
+                window._dataslayerQueue = window._dataslayerQueue || [];
+                window._dataslayerQueue.push({
+                  type: 'dataslayer_launchrulecompleted',
+                  url: window == window.parent ? window.location.href : 'iframe',
+                  data: rule,
+                });
+                return;
+            } else {
+                // console.log('** dataslayer: waiting 250ms to repost rule **');
+                window.setTimeout(sendRule, 250);
+            }
+        }
+    }
+    sendRule();
+    if (
+      window._satellite &&
+      window._satellite._container &&
+      window._satellite._container.dataElements
+    ) {
+      var elementNames = Object.keys(
+        window._satellite._container.dataElements
+      ).sort(function(a, b) {
+        var nameA = a.toUpperCase();
+        var nameB = b.toUpperCase();
+
+        if (nameA < nameB) {
+          return -1;
+        } else if (nameA > nameB) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+
+      let launchElements = {};
+
+      for (var i = 0; i < elementNames.length; i++) {
+        var newElement = JSON.parse(
+          JSON.stringify(
+            window._satellite._container.dataElements[elementNames[i]]
+          )
+        );
+  
+        let cleanValue = window._satellite.getVar(elementNames[i]);
+        if (typeof cleanValue === 'function') {
+          cleanValue = '(function)';
+        } else if (
+          typeof cleanValue === 'object' &&
+          typeof cleanValue.then === 'function'
+        ) {
+          cleanValue = '(Promise)';
+        }
+        launchElements[elementNames[i]] = cleanValue;
+        // launchElements.push({
+        //   key: elementNames[i],
+        //   value: cleanValue,
+        //   element: newElement,
+        // });
+      }
+      try {
+        window.parent.postMessage(
+          {
+            type: 'dataslayer_launchdataelements',
+            data: 'found',
+            url: window == window.parent ? window.location.href : 'iframe',
+            elements: launchElements
+          },
+          '*'
+        );
+      } catch (e) {
+        console.warn(e);
+      }
+  
+    }
+  },
+  ruleConditionFailed: function(e) {
+    window.parent.postMessage(
+      {
+        type: 'dataslayer_launchrulefailed',
+        url: window == window.parent ? window.location.href : 'iframe',
+        data: JSON.parse(JSON.stringify(e.rule)),
+      },
+      '*'
+    );
+  },
+});
+</script><script>$("#permAddrCountry").val($("#birthPlaceCountry").val()); 
+             $("#permAddrDiv").val($("#birthPlaceDiv").val()); 
+             $("#permAddrDist").val($("#birthPlaceDist").val()); 
+             $("#permAddrCityCorpCantOrUpazila").val($("#birthPlaceCityCorpCantOrUpazila").val()); 
+             $("#permAddrPaurasavaOrUnion").val($("#birthPlacePaurasavaOrUnion").val()); 
+             $("#permAddrWardInPaurasavaOrUnion").val($("#birthPlaceWardInPaurasavaOrUnion").val()); 
+			 $("#permAddrPostOfc").val($("#birthPlacePostOfc").val()); 
+			 $("#permAddrPostOfcEn").val($("#birthPlacePostOfcEn").val()); 
+             $("#permAddrVilAreaTownBn").val($("#birthPlaceVilAreaTownBn").val()); 
+			 $("#permAddrVilAreaTownEn").val($("#birthPlaceVilAreaTownEn").val()); 
+			 $("#permAddrHouseRoadBn").val($("#birthPlaceHouseRoadBn").val()); 
+			 $("#permAddrHouseRoadEn").val($("#birthPlaceHouseRoadEn").val()); 
+	
+	
+
+	
+			 $("#prsntAddrCountry").val($("#permAddrCountry").val()); 
+             $("#prsntAddrDiv").val($("#permAddrDiv").val()); 
+             $("#prsntAddrDist").val($("#permAddrDist").val()); 
+             $("#prsntAddrCityCorpCantOrUpazila").val($("#permAddrCityCorpCantOrUpazila").val()); 
+             $("#prsntAddrPaurasavaOrUnion").val($("#permAddrPaurasavaOrUnion").val()); 
+             $("#prsntAddrWardInPaurasavaOrUnion").val($("#permAddrWardInPaurasavaOrUnion").val()); 
+			 $("#prsntAddrPostOfc").val($("#permAddrPostOfc").val()); 
+			 $("#prsntAddrPostOfcEn").val($("#permAddrPostOfcEn").val()); 
+             $("#prsntAddrVilAreaTownBn").val($("#permAddrVilAreaTownBn").val()); 
+			 $("#prsntAddrVilAreaTownEn").val($("#permAddrVilAreaTownEn").val()); 
+			 $("#prsntAddrHouseRoadBn").val($("#permAddrHouseRoadBn").val()); 
+			 $("#prsntAddrHouseRoadEn").val($("#permAddrHouseRoadEn").val()); </script><link rel="stylesheet" type="text/css" href="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/fonts.css"></head>
+
+
+<body>
+<div class="wrapper">
+    <header class="header-top" header-theme="light" style="padding-left: 40px">
+    <div class="container-fluid">
+        <div class="justify-content-between d-none d-lg-block" style="background-image: linear-gradient(#9fcdff , #035a73)">
+
+            <div class="top-menu align-items-left">
+
+                <a class="header-brand" href="+# dullaup.github.io">
+                    <div class="logo-img pull-left">
+                        <img src="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/dgfood-removebg-preview.png" class="header-brand-img" alt="LOGOs" width="120px" height="100px">
+                    </div>
+                </a>
+
+                <div class="d-none d-sm-block pull-left" style="padding-left: 1rem; font-weight: bold; font-size: 1.3rem">খাদ্যবান্ধব কর্মসূচির ভেরিফাইড ডিজিটাল ডাটাবেজ প্রণয়ন কার্যক্রম
+
+
+
+
+                </div>
+
+                <div class="d-none d-sm-block pull-right" style="font-weight: bold; font-size: 1.0rem; color: blue">মো:ময়নালহক <span><i class="fa fa-phone">1728766346</i>
+                    <br>
+                        UDC Office, দুল্লা
+                    </span> </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+    <div class="page-wrap">
+        <div class="main-content" style="padding-left: 50px">
+            <header class="page-header" style="margin-bottom: 0.1rem">
+                <div class="container-fluid">
+                                    </div>
+            </header>
+            <main class="py-4">
+                                    <link href="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+    <script src="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/jquery-3.5.1.js"></script>
+    <script src="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/jquery.dataTables.min.js"></script>
+
+    <nav aria-label="breadcrumb" style="padding-top: 50px">
+        <ol class="breadcrumb" style="background-color: rgba(44,221,32,0.1); margin-bottom: 0.5rem">
+            <li class="breadcrumb-item"><a class="white-text" href="https://github.com/spsumon441989/dullaunionp.github.io.git">Home</a></li>
+            <li class="breadcrumb-item"><a class="white-text" href="https://ffp.dgfood.gov.bd/foodfriendly/verification/verifiedBeneficiaryIndex">যাচাইকৃত ভোক্তা</a></li>
+        </ol>
+    </nav>
+
+    
+    <div class="container-text">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header font-weight-bold">ময়মনসিংহ জেলার  মুক্তাগাছা উপজেলার দুল্লা ইউনিয়নের যাচাইকৃত ভোক্তার তালিকা</div>
+
+                    <div class="card-body">
+
+                        <div class="col-md-12" style="overflow-x:auto;">
+                            <div id="verified-beneficiary-table_wrapper" class="dataTables_wrapper no-footer"><div class="dataTables_length" id="verified-beneficiary-table_length"><label>Show <select name="verified-beneficiary-table_length" aria-controls="verified-beneficiary-table" class=""><option value="10" selected="selected">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div><div id="verified-beneficiary-table_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="verified-beneficiary-table"></label></div><div id="verified-beneficiary-table_processing" class="dataTables_processing" style="display: none;">Processing...</div><table class="table table-bordered table-hover table-striped dataTable no-footer" id="verified-beneficiary-table" aria-describedby="verified-beneficiary-table_info">
+                                <thead style="background-color: #b0b0b0">
+                                <tr><th class="sorting_disabled" rowspan="1" colspan="1" aria-label="ফটো">ফটো</th><th class="sorting sorting_asc" tabindex="0" aria-controls="verified-beneficiary-table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="কার্ড নম্বর: activate to sort column descending">কার্ড নম্বর</th><th class="sorting" tabindex="0" aria-controls="verified-beneficiary-table" rowspan="1" colspan="1" aria-label="এনআইডি: activate to sort column ascending">এনআইডি</th><th class="sorting" tabindex="0" aria-controls="verified-beneficiary-table" rowspan="1" colspan="1" aria-label="ভোক্তা: activate to sort column ascending">ভোক্তা</th><th class="sorting" tabindex="0" aria-controls="verified-beneficiary-table" rowspan="1" colspan="1" aria-label="বৈবাহিক অবস্থা: activate to sort column ascending">বৈবাহিক অবস্থা</th><th class="sorting" tabindex="0" aria-controls="verified-beneficiary-table" rowspan="1" colspan="1" aria-label="স্থায়ী ঠিকানা: activate to sort column ascending">স্থায়ী ঠিকানা</th><th class="sorting" tabindex="0" aria-controls="verified-beneficiary-table" rowspan="1" colspan="1" aria-label="বর্তমান ঠিকানা: activate to sort column ascending">বর্তমান ঠিকানা</th><th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Action">Action</th></tr>
+                                </thead><tbody><tr class="odd"><td><img src="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/vr-1210655.jpeg" alt=" " style="height: 150px; width: 150px;"></td><td class="sorting_1">1</td><td>7320154722</td><td>মোঃ তাজুল ইসলাম</td><td>বৈবাহিক অবস্থাঃ বিবাহিত <br> <i>স্বামী/স্ত্রীর নামঃ মোছাঃ হাছিনা খাতুন</i><br>স্বামী/স্ত্রীর এনআইডিঃ 7770137326</td><td>গ্রাম/রাস্তা: হরিরামপুর পুর্বপাড়া<br>পোস্ট অফিস: দুল্লা-2210<br><br> ওয়ার্ড নম্বরঃ 1<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td>গ্রাম/রাস্তা: হরিরামপুর<br>ইউনিয়ন: দুল্লা<br> ওয়ার্ড নম্বরঃ 1<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td><div class="btn-group btn-group-sm" role="group" aria-label="Action Button">
+                    <button data-remote="view/verified/1210655" type="button" class="btn btn-view btn-sm btn-secondary"><i class="fa fa-open">View</i></button>
+                    <button data-remote="print/verified/1210655" type="button" target="_blank" class="btn btn-print btn-sm btn-primary"><i class="fa fa-print">Print Form</i></button>
+                    </div></td></tr><tr class="even"><td><img src="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/vr-2063632.jpeg" alt=" " style="height: 150px; width: 150px;"></td><td class="sorting_1">2</td><td>6870186316</td><td>মোছাঃ রোকিয়া খাতুন</td><td>বৈবাহিক অবস্থাঃ বিধবা<br> <i>স্বামী/স্ত্রীর নামঃ </i><br>স্বামী/স্ত্রীর এনআইডিঃ </td><td>গ্রাম/রাস্তা: হরিরামপুর<br>পোস্ট অফিস: দুল্লা-2210<br><br> ওয়ার্ড নম্বরঃ 1<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td>গ্রাম/রাস্তা: হরিরামপুর<br>ইউনিয়ন: দুল্লা<br> ওয়ার্ড নম্বরঃ 1<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td><div class="btn-group btn-group-sm" role="group" aria-label="Action Button">
+                    <button data-remote="view/verified/2063632" type="button" class="btn btn-view btn-sm btn-secondary"><i class="fa fa-open">View</i></button>
+                    <button data-remote="print/verified/2063632" type="button" target="_blank" class="btn btn-print btn-sm btn-primary"><i class="fa fa-print">Print Form</i></button>
+                    </div></td></tr><tr class="odd"><td><img src="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/vr-2113283.jpeg" alt=" " style="height: 150px; width: 150px;"></td><td class="sorting_1">3</td><td>1010103818</td><td>মোঃ নূর মোহাম্মদ খাঁ</td><td>বৈবাহিক অবস্থাঃ বিবাহিত <br> <i>স্বামী/স্ত্রীর নামঃ মোছাঃ রোকিয়া খাতুন</i><br>স্বামী/স্ত্রীর এনআইডিঃ 3720197056</td><td>গ্রাম/রাস্তা: হরিরামপুর (খাঁ বাড়ী)<br>পোস্ট অফিস: দুল্লা-2210<br><br> ওয়ার্ড নম্বরঃ 2<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td>গ্রাম/রাস্তা: হরিরামপুর<br>ইউনিয়ন: দুল্লা<br> ওয়ার্ড নম্বরঃ 1<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td><div class="btn-group btn-group-sm" role="group" aria-label="Action Button">
+                    <button data-remote="view/verified/2113283" type="button" class="btn btn-view btn-sm btn-secondary"><i class="fa fa-open">View</i></button>
+                    <button data-remote="print/verified/2113283" type="button" target="_blank" class="btn btn-print btn-sm btn-primary"><i class="fa fa-print">Print Form</i></button>
+                    </div></td></tr><tr class="even"><td><img src="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/vr-2021121.jpeg" alt=" " style="height: 150px; width: 150px;"></td><td class="sorting_1">4</td><td>1950605871</td><td>মোঃ ফারুক হোসাইন</td><td>বৈবাহিক অবস্থাঃ বিবাহিত <br> <i>স্বামী/স্ত্রীর নামঃ মোঃ তোতা মিয়া</i><br>স্বামী/স্ত্রীর এনআইডিঃ 7770199409</td><td>গ্রাম/রাস্তা: হরিরামপুর<br>পোস্ট অফিস: দুল্লা-২২১০<br><br> ওয়ার্ড নম্বরঃ 2<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td>গ্রাম/রাস্তা: হরিরামপুর<br>ইউনিয়ন: দুল্লা<br> ওয়ার্ড নম্বরঃ 1<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td><div class="btn-group btn-group-sm" role="group" aria-label="Action Button">
+                    <button data-remote="view/verified/2021121" type="button" class="btn btn-view btn-sm btn-secondary"><i class="fa fa-open">View</i></button>
+                    <button data-remote="print/verified/2021121" type="button" target="_blank" class="btn btn-print btn-sm btn-primary"><i class="fa fa-print">Print Form</i></button>
+                    </div></td></tr><tr class="odd"><td><img src="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/vr-2095946.jpeg" alt=" " style="height: 150px; width: 150px;"></td><td class="sorting_1">5</td><td>7320204642</td><td>শান্তি রানী রবিদাস</td><td>বৈবাহিক অবস্থাঃ বিবাহিত <br> <i>স্বামী/স্ত্রীর নামঃ রতন রবিদাস</i><br>স্বামী/স্ত্রীর এনআইডিঃ 2820190854</td><td>গ্রাম/রাস্তা: হরিরামপুর<br>পোস্ট অফিস: দুল্লা-2210<br><br> ওয়ার্ড নম্বরঃ 1<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td>গ্রাম/রাস্তা: হরিরামপুর<br>ইউনিয়ন: দুল্লা<br> ওয়ার্ড নম্বরঃ 1<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td><div class="btn-group btn-group-sm" role="group" aria-label="Action Button">
+                    <button data-remote="view/verified/2095946" type="button" class="btn btn-view btn-sm btn-secondary"><i class="fa fa-open">View</i></button>
+                    <button data-remote="print/verified/2095946" type="button" target="_blank" class="btn btn-print btn-sm btn-primary"><i class="fa fa-print">Print Form</i></button>
+                    </div></td></tr><tr class="even"><td><img src="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/vr-3310656.jpeg" alt=" " style="height: 150px; width: 150px;"></td><td class="sorting_1">6</td><td>1501686131</td><td>দুলাল রবিদাস</td><td>বৈবাহিক অবস্থাঃ তালাকপ্রাপ্ত<br> <i>স্বামী/স্ত্রীর নামঃ </i><br>স্বামী/স্ত্রীর এনআইডিঃ </td><td>গ্রাম/রাস্তা: হরিরামপুর<br>পোস্ট অফিস: দুল্লা-২২১০<br><br> ওয়ার্ড নম্বরঃ 1<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td>গ্রাম/রাস্তা: হরিরামপুর<br>ইউনিয়ন: দুল্লা<br> ওয়ার্ড নম্বরঃ 1<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td><div class="btn-group btn-group-sm" role="group" aria-label="Action Button">
+                    <button data-remote="view/verified/3310656" type="button" class="btn btn-view btn-sm btn-secondary"><i class="fa fa-open">View</i></button>
+                    <button data-remote="print/verified/3310656" type="button" target="_blank" class="btn btn-print btn-sm btn-primary"><i class="fa fa-print">Print Form</i></button>
+                    </div></td></tr><tr class="odd"><td><img src="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/vr-2107477.jpeg" alt=" " style="height: 150px; width: 150px;"></td><td class="sorting_1">7</td><td>8220144706</td><td>মোঃ আব্দুল মালেক খাঁ</td><td>বৈবাহিক অবস্থাঃ বিবাহিত <br> <i>স্বামী/স্ত্রীর নামঃ মোছাঃ আন্জু খাতুন</i><br>স্বামী/স্ত্রীর এনআইডিঃ 3307806475</td><td>গ্রাম/রাস্তা: হরিরামপুর (খাঁ বাড়ী )<br>পোস্ট অফিস: দুল্লা-2210<br><br> ওয়ার্ড নম্বরঃ 2<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td>গ্রাম/রাস্তা: হরিরামপুর<br>ইউনিয়ন: দুল্লা<br> ওয়ার্ড নম্বরঃ 1<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td><div class="btn-group btn-group-sm" role="group" aria-label="Action Button">
+                    <button data-remote="view/verified/2107477" type="button" class="btn btn-view btn-sm btn-secondary"><i class="fa fa-open">View</i></button>
+                    <button data-remote="print/verified/2107477" type="button" target="_blank" class="btn btn-print btn-sm btn-primary"><i class="fa fa-print">Print Form</i></button>
+                    </div></td></tr><tr class="even"><td><img src="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/vr-1807983.jpeg" alt=" " style="height: 150px; width: 150px;"></td><td class="sorting_1">8</td><td>4170141578</td><td>মোঃ মনিক মিয়া</td><td>বৈবাহিক অবস্থাঃ বিবাহিত <br> <i>স্বামী/স্ত্রীর নামঃ আমেনা খাতুন</i><br>স্বামী/স্ত্রীর এনআইডিঃ 4170127585</td><td>গ্রাম/রাস্তা: ছালড়া<br>পোস্ট অফিস: দুল্লা-2210<br><br> ওয়ার্ড নম্বরঃ 1<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td>গ্রাম/রাস্তা: ছালড়া<br>ইউনিয়ন: দুল্লা<br> ওয়ার্ড নম্বরঃ 1<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td><div class="btn-group btn-group-sm" role="group" aria-label="Action Button">
+                    <button data-remote="view/verified/1807983" type="button" class="btn btn-view btn-sm btn-secondary"><i class="fa fa-open">View</i></button>
+                    <button data-remote="print/verified/1807983" type="button" target="_blank" class="btn btn-print btn-sm btn-primary"><i class="fa fa-print">Print Form</i></button>
+                    </div></td></tr><tr class="odd"><td><img src="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/vr-2460044.jpeg" alt=" " style="height: 150px; width: 150px;"></td><td class="sorting_1">9</td><td>6442465933</td><td>মোঃ রাশিদুল ইসলাম (জুয়েল)</td><td>বৈবাহিক অবস্থাঃ বিবাহিত <br> <i>স্বামী/স্ত্রীর নামঃ লাকী আক্তার</i><br>স্বামী/স্ত্রীর এনআইডিঃ 8263572458</td><td>গ্রাম/রাস্তা: চন্ডিমন্ডপ<br>পোস্ট অফিস: চেচুয়া বাজার-2210<br><br> ওয়ার্ড নম্বরঃ 6<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td>গ্রাম/রাস্তা: ছালড়া<br>ইউনিয়ন: দুল্লা<br> ওয়ার্ড নম্বরঃ 1<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td><div class="btn-group btn-group-sm" role="group" aria-label="Action Button">
+                    <button data-remote="view/verified/2460044" type="button" class="btn btn-view btn-sm btn-secondary"><i class="fa fa-open">View</i></button>
+                    <button data-remote="print/verified/2460044" type="button" target="_blank" class="btn btn-print btn-sm btn-primary"><i class="fa fa-print">Print Form</i></button>
+                    </div></td></tr><tr class="even"><td><img src="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/vr-2109367.jpeg" alt=" " style="height: 150px; width: 150px;"></td><td class="sorting_1">10</td><td>1031968975</td><td>রাশিদুল ইসলাম</td><td>বৈবাহিক অবস্থাঃ বিবাহিত <br> <i>স্বামী/স্ত্রীর নামঃ মোছাঃ ছালমা আক্তার</i><br>স্বামী/স্ত্রীর এনআইডিঃ 3763518481</td><td>গ্রাম/রাস্তা: ছালড়া<br>পোস্ট অফিস: দুল্লা-২২১০<br><br> ওয়ার্ড নম্বরঃ 1<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td>গ্রাম/রাস্তা: ছালড়া<br>ইউনিয়ন: দুল্লা<br> ওয়ার্ড নম্বরঃ 1<br>উপজেলাঃ মুক্তাগাছা  জেলাঃ ময়মনসিংহ</td><td><div class="btn-group btn-group-sm" role="group" aria-label="Action Button">
+                    <button data-remote="view/verified/2109367" type="button" class="btn btn-view btn-sm btn-secondary"><i class="fa fa-open">View</i></button>
+                    <button data-remote="print/verified/2109367" type="button" target="_blank" class="btn btn-print btn-sm btn-primary"><i class="fa fa-print">Print Form</i></button>
+                    </div></td></tr></tbody>
+                            </table><div class="dataTables_info" id="verified-beneficiary-table_info" role="status" aria-live="polite">Showing 1 to 10 of 1,981 entries</div><div class="dataTables_paginate paging_simple_numbers" id="verified-beneficiary-table_paginate"><a class="paginate_button previous disabled" aria-controls="verified-beneficiary-table" data-dt-idx="0" tabindex="-1" id="verified-beneficiary-table_previous">Previous</a><span><a class="paginate_button current" aria-controls="verified-beneficiary-table" data-dt-idx="1" tabindex="0">1</a><a class="paginate_button " aria-controls="verified-beneficiary-table" data-dt-idx="2" tabindex="0">2</a><a class="paginate_button " aria-controls="verified-beneficiary-table" data-dt-idx="3" tabindex="0">3</a><a class="paginate_button " aria-controls="verified-beneficiary-table" data-dt-idx="4" tabindex="0">4</a><a class="paginate_button " aria-controls="verified-beneficiary-table" data-dt-idx="5" tabindex="0">5</a><span class="ellipsis">…</span><a class="paginate_button " aria-controls="verified-beneficiary-table" data-dt-idx="6" tabindex="0">199</a></span><a class="paginate_button next" aria-controls="verified-beneficiary-table" data-dt-idx="7" tabindex="0" id="verified-beneficiary-table_next">Next</a></div></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+            </main>
+        </div>
+        <footer class="footer">
+            <div class="w-100 clearfix">
+                <span class="text-center text-sm-left d-md-inline-block">কপিরাইট ©খাদ্য অধিদপ্তর ২০২২.</span>
+            </div>
+        </footer>
+    </div>
+</div>
+<script type="text/javascript" src="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/bootstrap.min.js"></script>
+
+
+<script type="text/javascript" src="%E0%A6%96%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A7%E0%A6%AC%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A7%82%E0%A6%9A%E0%A6%BF33_files/jquery.datetimepicker.js"></script>
+
+
+    <script>
+
+        $(function() {
+            var table= $('#verified-beneficiary-table').DataTable({
+                processing: true,
+                serverSide: true,
+                autoWidth: false,
+                responsive: true,
+                ajax: 'verifiedBeneficiaryListDT',
+                columns: [
+                    { data: 'showimage', name: 'showimage',orderable: false, searchable: false },
+                    { data: 'card_no', name: 'card_no',searchable: true },
+                    { data: 'national_id', name: 'national_id',searchable: true },
+                    { data: 'ec_beneficiary_name', name: 'ec_beneficiary_name' },
+                    { data: 'marital', name: 'others.spouse_nid','defaultContent':'' },
+                    { data: 'permanent', name: 'permanent'},
+                    { data: 'present', name: 'present'},
+                    { data: 'action', name: 'action', orderable: false, searchable: false, printable: false}
+
+                ],
+                order: [[ 1, "asc" ]],
+
+                // rowCallback: function( row, data, index ) {
+                //     if(index%2 == 0){
+                //         $(row).removeClass('myodd myeven');
+                //         $(row).addClass('myodd');
+                //     }else{
+                //         $(row).removeClass('myodd myeven');
+                //         $(row).addClass('myeven');
+                //     }
+                // }
+            });
+
+            $(this).on("click", ".btn-view", function (e) {
+                e.preventDefault();
+
+                var url = $(this).data('remote');
+
+                $('#verified-beneficiary-table').parents('div.dataTables_wrapper').first().hide();
+
+                window.location.href = url;
+
+            });
+
+            $(this).on("click", ".btn-print", function (e) {
+                e.preventDefault();
+
+                var url = $(this).data('remote');
+
+                window.location.href = url;
+
+            });
+
+            $(this).on("click", ".btn-card", function (e) {
+                e.preventDefault();
+
+                var url = $(this).data('remote');
+
+                window.location.href = url;
+
+            });
+
+
+
+
+
+            // $(this).on('click', '.btn-delete', function (e) {
+            //     e.preventDefault();
+            //
+            //     if($(this).data('permission') == false) { alert('You do not have permission'); return false}
+            //
+            //     $.ajaxSetup({
+            //         headers: {
+            //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //         }
+            //     });
+            //
+            //     var url = $(this).data('remote');
+            //     // confirm then
+            //     $.ajax({
+            //         beforeSend: function (request) {
+            //             return confirm("Are you sure?");
+            //         },
+            //         url: url,
+            //         type: 'DELETE',
+            //         dataType: 'json',
+            //         data: {method: '_DELETE', submit: true},
+            //
+            //         error: function (request, status, error) {
+            //             alert(request.responseText);
+            //         },
+            //
+            //     }).always(function (data) {
+            //         $('#head-table').DataTable().draw(true);
+            //     })
+            // });
+
+        });
+
+
+        $(function (){
+            $(document).on("focus", "input:text", function() {
+                $(this).select();
+            });
+        });
+
+    </script>
+
+
+
+<iframe style="display: none;"></iframe><hv-copy-modal></hv-copy-modal><div style="width: 40px; height: 40px; border-radius: 2px; cursor: pointer; background-color: green; position: fixed; bottom: 50px; right: 50px;"><img style="width: 100%;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAA9ElEQVRoge2ZQQ6CMBAAR6O+UMNBvyO+FD4BiR7MHqy0lKalS9hJeiHpMkMCIQCGYeTiAryADnh7Vge0wLmSY5AWv7i7npUcg/TEB/S5TnrINYiv2OrnPuUY4sEVXBoYxbHE0DWxgNpYQG0soDYWUBsLqE1swBUYCL9hLiU0awTuCTODxESEgmL3FZFPiUgJKCovxEa4qJAXpiJG4BGx9+bZu5q8kBKhRl5YEqFOXoiJUCsvhCLUywsN/6KD51hTyXGWuUesyivv4ovYhLzgRmxKXpCITcoLDYpvWMMwFDD1k6HId/yM/Djv5quEWjYfYBh75wNHsstOyS3+9gAAAABJRU5ErkJggg=="></div></body><style id="xstyle-2" class="xstyle" type="text/css">var dataTablePrintBtn ={extend:print,text: dataTablePrintBtnText}var dataTableColumnVisibilityBtn ={extend:colvis,text: dataTableColumnVisibilityBtnText}</style></html>
